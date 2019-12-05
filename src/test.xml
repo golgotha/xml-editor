@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration type="RECRUITING" name="REALI_ANGULAR" documentId="1ZbbswRSLqezVUKr7-KgQqagWNgU_uMtpR3t0Q9x4hBI"
+               hint="Reali Angular"
+               status="active">
+  <report source="SQL"></report>
+  <avatar name="ANTON_KOSTENKO" email="michael.mamontov@temy.co">
+    <message type="INVITE">
+      <if location="LVIV">
+        <then>
+          <b>{user_name}, вітаю! У нас в Temy.co є вакансія Front-end Angular Engineer</b>
+          <b>стек проекту: Angular 7 / TypeScript / RxJS / Webpack / Git / Jasmine / Karma</b>
+          <b>будь ласка долучіть мене в Linkedin, щоб я розповів докладніше</b>
+        </then>
+        <else>
+          <b>{user_name}, здравствуйте! У нас в Temy.co есть вакансия Front-end Angular Engineer</b>
+          <b>стек проекта: Angular 7 / TypeScript / RxJS / Webpack / Git / Jasmine / Karma</b>
+          <b>пожалуйста добавьте меня в Linkedin, чтобы я рассказал подробнее</b>
+        </else>
+      </if>
+    </message>
+    <message type="IN_MAIL" priority="REGULAR" order="1">
+      <subject>
+        <if location="LVIV">
+          <then>
+            <b>вакансія Front-end Angular Engineer</b>
+          </then>
+          <else>
+            <b>вакансия Front-end Angular Engineer</b>
+          </else>
+        </if>
+      </subject>
+      <if location="LVIV">
+        <then>
+          <b>{user_name} доброго дня, я шукаю Front-end Angular інженера в нашу компанію Temy</b>
+          <b>Наш клієнт - добре профінансований стартап зі Штатів, який розробляє платформу для пошуку та
+            перепродажу нерухомості
+            в Каліфорнії. Застосунок з'єднує покупця та рієлтора.
+          </b>
+          <b>На цьому проекті вже є команда з трьох Angular інженерів та двох QA Automation розташованих в
+            нашому
+            офісі у
+            Львові.
+          </b>
+          <b>Технологічний стек проекту: Angular 7 / TypeScript / RxJS / Webpack / Git / Jasmine / Karma</b>
+          <b>Будь ласка подивіться більш докладний опис вакансії за цим посиланням
+            https://bit.ly/angular_reali
+          </b>
+          <b>Це цікавий проект, будь ласка, напишіть мені, щоб я розповів про нього більше</b>
+        </then>
+        <else>
+          <b>{user_name} добрый день, я ищу Front-end Angular инженера в нашу компанию Temy</b>
+          <b>Наш клиент - хорошо профинансированный стартап из Штатов, который разрабаотывает платформу для
+            поиска
+            и продажи
+            недвижимости в Калифорнии. Приложение соединяет покупателя и риелтора.
+          </b>
+          <b>На этом проекте уже есть команда из 3 Angular инженеров и 2 QA Automation, расположенных в нашем
+            офисе во Львове.
+          </b>
+          <b>Технологический стек проекта: Angular 7 / TypeScript / RxJS / Webpack / Git / Jasmine / Karma</b>
+          <b>Пожалуйста посмотрите более подробное описание вакансии по этой ссылке
+            https://bit.ly/angular_reali
+          </b>
+          <b>Это интересный проект, пожалуйста, напишите мне, чтобы я рассказал о нём больше</b>
+        </else>
+      </if>
+    </message>
+    <message type="IN_MAIL" purpose="BUTTON" hint="Обр. возр. 'не интерсно'">
+      <if location="LVIV">
+        <then>
+          <b>{user_name} дякую за вашу відповідь! Будь ласка уточніть, вас не цікавить саме цей технологічний
+            стек або вас
+            влаштовує ваш поточний проект?
+          </b>
+        </then>
+        <else>
+          <b>{user_name} спасибо за ваш ответ! Пожалуйста скажите, вам не интересен именно этот
+            технологический стек или
+            вас
+            устраивает ваш текущий проект?
+          </b>
+        </else>
+      </if>
+    </message>
+    <message
+      type="IN_MAIL" purpose="BUTTON" hint="Обр. возр. 'не ищу работу'">
+      <if
+        location="LVIV">
+        <then>
+          <b>{user_name} дякую за вашу відповідь! Радий знати, що вас влаштовує ваш поточний проект, проте
+            завжди може
+            знайитсь
+            проект з більшими перспективами і цікавішим технологічним стеком.
+          </b>
+          <b>Як ви дізнаєтеся, що ваш проект - найкращий, якщо не порівняєте його з іншими?</b>
+          <b>Я пропоную вам пройти інтерв'ю і отримати від нас оффер, ваша справа приймати його чи ні, вас він
+            ні до
+            чого не
+            зобов'яже. Я знаю, що ви не хочете витрачати час, тому ми будемо підлаштовуватися коли вам
+            зручніше.
+            Давайте
+            призначимо по скайпу на зручні для вас день і час?
+          </b>
+        </then>
+        <else>
+          <b>{user_name} спасибо за ваш ответ! Рад знать, что вас устраивает ваш текущий проект, однако всегда
+            может
+            найитсь
+            проект с более хорошими перспективами и более интересным технологическим стеком.
+          </b>
+          <b>Как вы узнаете, что ваш проект - лучший, если не сравните его с другими?</b>
+          <b>Я предлагаю вам пройти интервью и получить от нас оффер, ваше дело принимать его или нет, вас он
+            ни к
+            чему не обяжет.
+            Я знаю, что вы не хотите тратить время, поэтому мы будем подстраиваться когда вам удобнее.
+            Давайте
+            назначим по
+            скайпу на удобные для вас день и время?
+          </b>
+        </else>
+      </if>
+    </message>
+    <message type="IN_MAIL" purpose="BUTTON" hint="More info">
+      <subject>
+        <if location="LVIV">
+          <then>
+            <b>вакансія Front-end Angular Engineer</b>
+          </then>
+          <else>
+            <b>вакансия Front-end Angular Engineer</b>
+          </else>
+        </if>
+      </subject>
+      <if location="LVIV">
+        <then>
+          <b>Наш клієнт - добре профінансований стартап зі Штатів, який розробляє платформу для пошуку та
+            перепродажу
+            нерухомості
+            в Каліфорнії. Застосунок з'єднує покупця та рієлтора.
+          </b>
+          <b>На цьому проекті вже є команда з трьох Angular інженерів та двох QA Automation розташованих в
+            нашому
+            офісі у
+            Львові.
+          </b>
+          <b>Технологічний стек проекту: Angular 7 / TypeScript / RxJS / Webpack / Git / Jasmine / Karma</b>
+          <b>Будь ласка подивіться більш докладний опис вакансії за цим посиланням
+            https://bit.ly/angular_reali
+          </b>
+        </then>
+        <else>
+          <b>Наш клиент - хорошо профинансированный стартап из Штатов, который разрабаотывает платформу для
+            поиска
+            и
+            продажи
+            недвижимости в Калифорнии. Приложение соединяет покупателя и риелтора.
+          </b>
+          <b>На этом проекте уже есть команда из 3 Angular инженеров и 2 QA Automation, расположенных в нашем
+            офисе во
+            Львове.
+          </b>
+          <b>Технологический стек проекта: Angular 7 / TypeScript / RxJS / Webpack / Git / Jasmine / Karma</b>
+          <b>Пожалуйста посмотрите более подробное описание вакансии по этой ссылке
+            https://bit.ly/angular_reali
+          </b>
+        </else>
+      </if>
+    </message>
+    <message type="IN_MAIL" purpose="BUTTON" hint="Thank you for your reply">
+      <if
+        location="LVIV">
+        <then>
+          <b>{user_name}, дякую за вашу відповідь!</b>
+        </then>
+        <else>
+          <b>{user_name} спасибо за ваш ответ!</b>
+        </else>
+      </if>
+    </message>
+    <message type="IN_MAIL" purpose="BUTTON" hint="Screening Question\">
+      <if location="LVIV">
+        <then>
+          <b>{user_name}, будь ласка скажіть, чи є у вас досвід роботи з Postman</b>
+        </then>
+        <else>
+          <b>{user_name} пожалуйста скажите, есть ли у вас опыт работы с Postman</b>
+        </else>
+      </if>
+    </message>
+  </avatar>
+</configuration>
