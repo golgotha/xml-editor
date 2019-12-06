@@ -9,12 +9,12 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    this.parser = new DOMParser();
     this.state = {};
   }
 
   componentDidMount() {
-    const parser = new DOMParser();
-    const dom = parser.parseFromString(test.xml, "application/xml");
+    const dom = this.parser.parseFromString(test.xml, 'application/xml');
     const documentModel = Document.createDocument();
     const rootNodes = documentModel.getNodes();
 
@@ -23,9 +23,14 @@ class App extends Component {
     function treeNode(nodes, newNodes) {
       for (let i = 0; i < nodes.length; i++) {
         const node = nodes[i];
+        // Node.TEXT_NODE
+        // console.debug(node.tagName, node.nodeType);
         if (node.tagName) {
+          // console.debug(node.nodeValue + '\n');
           const modelNode = Node.createNode(node.tagName);
+          modelNode.setTextContent(node.nodeValue);
           getListAttributes(node).forEach(attribute => modelNode.setAttribute(attribute.name, attribute.value));
+
           newNodes.push(modelNode);
 
           if (node.childNodes.length > 0) {
@@ -50,6 +55,23 @@ class App extends Component {
     // console.debug(dom)
   }
 
+  onCommit = (value, node) => {
+    console.debug(value)
+    node.name = value;
+    console.debug(node)
+    this.setState({document: this.state.document});
+  };
+
+  onSave = event => {
+    const {document} = this.state;
+    document.iterate((node, level) => {
+      console.debug(new Array(level).join(' ') + node.name + ' ' + node.index);
+    });
+
+    console.debug(this.parser.parseFromString(document.getString(), 'application/xml'));
+    console.debug(document.getString());
+  };
+
   render() {
     const {document} = this.state;
 
@@ -57,28 +79,18 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo"/>
-          <h2>Welcome to React</h2>
+          <h2>Welcome to XMl Editor</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-
-        {
-          document && document.iterate().map((item, index) => {
-            return (
-                <NodeComponent node={item.node}
-                               key={index}
-                               level={item.level}
-                />
-            )
-          })
-        }
+        <nav>
+          <button onClick={this.onSave}>Save</button>
+        </nav>
 
         {
           document && document.getNodes().map((node, index) => {
             return (
               <NodeComponent node={node}
-                             key={index}
+                             key={node.index}
+                             onCommit={this.onCommit}
                              level={0}
               />
             )

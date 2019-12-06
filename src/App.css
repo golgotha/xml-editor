@@ -46,6 +46,7 @@ li {
   font-weight: bold;
   background: orange;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .attribute {
