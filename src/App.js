@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Document, {Node} from './model/Document';
+import Document from './model/Document';
 import test from './test.json';
 import NodeComponent from './widgets/tree/NodeComponent';
+import Node, {TEXT_NODE} from './model/Node';
 
 class App extends Component {
 
@@ -23,19 +24,20 @@ class App extends Component {
     function treeNode(nodes, newNodes) {
       for (let i = 0; i < nodes.length; i++) {
         const node = nodes[i];
-        // Node.TEXT_NODE
-        // console.debug(node.tagName, node.nodeType);
-        if (node.tagName) {
-          // console.debug(node.nodeValue + '\n');
-          const modelNode = Node.createNode(node.tagName);
+        const nodeType = node.nodeType;
+        const modelNode = Node.createNode(node.tagName, nodeType);
+        newNodes.push(modelNode);
+
+        if (node.nodeType === TEXT_NODE) {
           modelNode.setTextContent(node.nodeValue);
+        }
+
+        if (node.tagName) {
           getListAttributes(node).forEach(attribute => modelNode.setAttribute(attribute.name, attribute.value));
+        }
 
-          newNodes.push(modelNode);
-
-          if (node.childNodes.length > 0) {
-            treeNode(node.childNodes, modelNode.getNodes());
-          }
+        if (node.childNodes.length > 0) {
+          treeNode(node.childNodes, modelNode.getNodes());
         }
 
       }
@@ -56,9 +58,13 @@ class App extends Component {
   }
 
   onCommit = (value, node) => {
-    console.debug(value)
-    node.name = value;
-    console.debug(node)
+    // console.debug(value)
+    if (node.type === TEXT_NODE) {
+      node.setTextContent(value);
+    } else {
+      node.name = value;
+    }
+    // console.debug(node)
     this.setState({document: this.state.document});
   };
 
@@ -85,17 +91,19 @@ class App extends Component {
           <button onClick={this.onSave}>Save</button>
         </nav>
 
-        {
-          document && document.getNodes().map((node, index) => {
-            return (
-              <NodeComponent node={node}
-                             key={node.index}
-                             onCommit={this.onCommit}
-                             level={0}
-              />
-            )
-          })
-        }
+        <div className="xml-tree ">
+          {
+            document && document.getNodes().map((node, index) => {
+              return (
+                <NodeComponent node={node}
+                               key={node.index}
+                               onCommit={this.onCommit}
+                               level={0}
+                />
+              )
+            })
+          }
+        </div>
       </div>
     );
   }

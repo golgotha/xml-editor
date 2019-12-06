@@ -27,15 +27,39 @@
   }
 }
 
+.xml-tree {
+  position: relative;
+  margin: 20px;
+}
+
+.xml-tree .collapse-expand {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  top: 11px;
+  left: -18px;
+  background: #fec;
+  border: solid 1px #d86;
+  color: #d55;
+  font-size: 15px;
+  text-align: center;
+  line-height: 9px;
+  cursor: pointer;
+}
+
 ul {
-  margin: 0;
   padding: 10px 0 0 0;
   border: none;
-  margin-left: 15px;
+  margin-left: 10px;
+  position: relative;
+}
+
+ul.node-content {
   border-left: solid 1px #d86;
 }
 
 li {
+  position: relative;
   list-style: none;
   text-align: left;
 }
@@ -47,8 +71,18 @@ li {
   background: orange;
   overflow: hidden;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .attribute {
   color: green;
+}
+
+input[type="text"] {
+  width: 100%;
+}
+
+textarea.edit-text {
+  width: 250px;
+  height: 150px;
 }

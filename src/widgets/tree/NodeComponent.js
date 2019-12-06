@@ -1,11 +1,16 @@
 import React, {useState} from 'react';
 import PT from 'prop-types';
-import NodeAttributeComponent from "./NodeAttributeComponent";
+import NodeAttributeComponent from './NodeAttributeComponent';
+import {TEXT_NODE} from '../../model/Node';
+import NodeElement from './NodeElement';
+import TextNodeElement from './TextNodeElement';
+import EditNodeComponent from './EditNodeComponent';
 
 const NodeComponent = ({node, level, onCommit}) => {
   const keys = Object.keys(node.attributes);
   const [editNodeName, setEditNodeName] = useState(false);
   const [editAttributeValue, setEditAttributeValue] = useState(false);
+  const [expanded, setExpanded] = useState(true);
 
   const change = event => {
     const value = event.target.value;
@@ -13,52 +18,60 @@ const NodeComponent = ({node, level, onCommit}) => {
     setEditNodeName(false);
   };
 
-  const onKeyUp = event => {
-    if (event.keyCode === 13) {
-      change(event);
-    }
+  const onCollapse = event => {
+    setExpanded(!expanded);
   };
 
+  const isTextNode = node.type === TEXT_NODE;
   return (
-    <ul>
-      <li style={{marginLeft: 10 * level}}>
-
+    <ul style={{paddingLeft: 10 * (level + 1)}}>
+      <li>
         {
           editNodeName ?
-            <input type="text"
-                   defaultValue={node.name}
-                   onBlur={event => change(event)}
-                   onKeyUp={event => onKeyUp(event)}
-            />
+            <EditNodeComponent node={node} onChange={change}/>
             :
-            (<span className="node" onClick={() => setEditNodeName(true)}>
-              {node.name + ' ' + node.index}
-            </span>)
-
+            (
+              isTextNode ?
+                (<TextNodeElement text={node.getTextContent()} onClick={() => setEditNodeName(true)}/>)
+                :
+                (
+                  <React.Fragment>
+                    <NodeElement name={node.name} onClick={() => setEditNodeName(true)}/>
+                  </React.Fragment>
+                )
+            )
         }
       </li>
+      <ul className="node-content" style={{display: expanded ? 'block' : 'none'}}>
 
-      {
-        keys.length > 0 && keys.map(key => {
-          return (
-            <NodeAttributeComponent key={key}
-                                    level={level}
-                                    name={key}
-                                    value={node.getAttribute(key)}
+        {
+          keys.length > 0 && keys.map(key => {
+            return (
+              <NodeAttributeComponent key={key}
+                                      level={level}
+                                      name={key}
+                                      value={node.getAttribute(key)}
+              />
+            )
+          })
+        }
+
+        {
+          node.nodes.length > 0 && node.nodes.map((n, i) => {
+            return <NodeComponent node={n}
+                                  key={i}
+                                  onCommit={onCommit}
+                                  level={level}
             />
-          )
-        })
-      }
-
+          })
+        }
+      </ul>
       {
-        node.nodes.length > 0 && node.nodes.map((n, i) => {
-          return <NodeComponent node={n}
-                                key={i}
-                                onCommit={onCommit}
-                                level={level + 1}
-          />
-        })
-      }
+        !isTextNode &&
+        <span className="collapse-expand collapsed" onClick={onCollapse}>
+          {expanded ? '-' : '+'}
+        </span>}
+
     </ul>
   );
 };
