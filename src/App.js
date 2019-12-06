@@ -87,24 +87,31 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo"/>
           <h2>Welcome to XMl Editor</h2>
         </div>
-        <nav>
-          <button onClick={this.onSave}>Save</button>
-        </nav>
 
-        <div className="xml-tree ">
-          {
-            document && document.getNodes().map((node, index) => {
-              return (
-                <NodeComponent node={node}
-                               key={node.index}
-                               onCommit={this.onCommit}
-                               level={0}
-                />
-              )
-            })
-          }
-        </div>
+        <section className="content">
+          <div className="controls">
+            <button className="btn btn-primary"
+                    onClick={this.onSave}>
+              Save
+            </button>
+          </div>
+
+          <div className="xml-tree ">
+            {
+              document && document.getNodes().map((node, index) => {
+                return (
+                  <NodeComponent node={node}
+                                 key={node.index}
+                                 onCommit={this.onCommit}
+                                 level={0}
+                  />
+                )
+              })
+            }
+          </div>
+        </section>
       </div>
+
     );
   }
 }

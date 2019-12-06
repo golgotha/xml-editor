@@ -18,6 +18,15 @@
   font-size: large;
 }
 
+.content {
+  margin: 10px 0 0 10px;
+}
+
+.controls {
+  display: flex;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -34,16 +43,16 @@
 
 .xml-tree .collapse-expand {
   position: absolute;
-  width: 11px;
-  height: 11px;
-  top: 11px;
-  left: -18px;
+  width: 14px;
+  height: 14px;
+  top: 13px;
+  left: -17px;
   background: #fec;
   border: solid 1px #d86;
   color: #d55;
   font-size: 15px;
   text-align: center;
-  line-height: 9px;
+  line-height: 10px;
   cursor: pointer;
 }
 
